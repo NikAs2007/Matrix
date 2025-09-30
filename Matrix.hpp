@@ -46,6 +46,9 @@ class Matrix {
     }
 
 public:
+    Matrix(){}
+
+    ~Matrix(){}
 
     Matrix(const vector<vector<T>>& mat) {
         matrix = mat;
@@ -114,8 +117,25 @@ public:
         }
     }
 
-    Matrix operator*(T right) {
+    Matrix operator*(T num) {
+        Matrix mat = *this;
+        for (size_t i = 0; i < matrix.size(); i++) {
+            for (size_t j = 0; j < matrix.size(); j++) {
+                mat[i][j] = num * mat[i][j];
+            }
+        }
+        return mat;
+    }
 
+    Matrix operator/(T num) {
+        T one = 1;
+        num = one / num;
+        return this->operator*(num);
+    }
+
+    HelperString& operator [](int i) {
+        HelperString h = HelperString(&matrix[i]);
+        return h;
     }
 
     Matrix input_matrix() {

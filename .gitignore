@@ -1,5 +1,7 @@
 .vs/
 build/
+Matrix/
+x64/
 *.sln
 *.filters
 *.user
