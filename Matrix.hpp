@@ -81,7 +81,7 @@ public:
         return make_pair(matrix.size(), matrix[0].size());
     }
 
-    Matrix operator+(Matrix& right) {
+    Matrix operator+(const Matrix& right) {
         Matrix mat = matrix;
         for (size_t i = 0; i < matrix.size(); i++) {
             for (size_t j = 0; j < matrix[0].size(); j++) {
@@ -91,7 +91,7 @@ public:
         return mat;
     }
 
-    void operator+=(Matrix& right) {
+    void operator+=(const Matrix& right) {
         for (size_t i = 0; i < matrix.size(); i++) {
             for (size_t j = 0; j < matrix[0].size(); j++) {
                 matrix[i][j] += right[i][j];
@@ -99,7 +99,7 @@ public:
         }
     }
 
-    Matrix operator-(Matrix& right) {
+    Matrix operator-(const Matrix& right) {
         Matrix mat = matrix;
         for (size_t i = 0; i < matrix.size(); i++) {
             for (size_t j = 0; j < matrix[0].size(); j++) {
@@ -109,7 +109,7 @@ public:
         return mat;
     }
 
-    void operator-=(Matrix& right) {
+    void operator-=(const Matrix& right) {
         for (size_t i = 0; i < matrix.size(); i++) {
             for (size_t j = 0; j < matrix[0].size(); j++) {
                 matrix[i][j] -= right[i][j];
@@ -125,6 +125,30 @@ public:
             }
         }
         return mat;
+    }
+
+    Matrix operator*(const Matrix& right) {
+        vector<vector<T>> mat;
+        vector<T> help_line;
+        try {
+            if (matrix[0].size() != right.matrix.size()) throw "False operation of multiply! ";
+
+            for (size_t i1 = 0; i1 < matrix.size(); i1++) {
+                help_line.clear();
+                for (size_t j2 = 0; j2 < right.matrix[0].size(); j2++) {
+                    T sum = 0;
+                    for (size_t o = 0; o < matrix[0].size(); o++) {
+                        sum += matrix[i1][o] * right.matrix[o][j2];
+                    }
+                    help_line.push_back(sum);
+                }
+                mat.push_back(help_line);
+            }
+        }
+        catch(const char* er){
+            cout << er << endl;
+        }
+        return Matrix(mat);
     }
 
     Matrix operator/(T num) {
