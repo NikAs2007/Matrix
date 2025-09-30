@@ -41,6 +41,32 @@ Matrix Matrix::operator+(Matrix& right) {
     return mat;
 }
 
+void Matrix::operator+=(Matrix& right) {
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix[0].size(); j++) {
+            matrix[i][j] += right[i][j];
+        }
+    }
+}
+
+Matrix Matrix::operator-(Matrix& right) {
+    Matrix mat = matrix;
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix[0].size(); j++) {
+            mat[i][j] -= right[i][j];
+        }
+    }
+    return mat;
+}
+
+void Matrix::operator-=(Matrix& right) {
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix[0].size(); j++) {
+            matrix[i][j] -= right[i][j];
+        }
+    }
+}
+
 Matrix Matrix::input_matrix() {
 
     int l, c;

@@ -36,6 +36,19 @@ public:
 
 	void operator =(Matrix&& right) noexcept;
 
+	Matrix operator +(Matrix& right);
+
+	Matrix operator -(Matrix& right);
+
+	void operator +=(Matrix& right);
+
+	void operator -=(Matrix& right);
+
+	HelperString& operator [](int i) {
+		HelperString h = HelperString(&matrix[i]);
+		return h;
+	}
+
 	Matrix input_matrix();
 
 	void print_matrix();
@@ -44,12 +57,6 @@ public:
 
 	pair<int, int> size();
 
-	Matrix operator +(Matrix& right);
-
-	HelperString& operator [](int i) {
-		HelperString h = HelperString(&matrix[i]);
-		return h;
-	}
 };
 
 
