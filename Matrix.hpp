@@ -128,9 +128,15 @@ public:
     }
 
     Matrix operator/(T num) {
-        T one = 1;
-        num = one / num;
-        return this->operator*(num);
+        try {
+            T one = 1;
+            if (num == 0) throw "Division by 0!";
+            num = one / num;
+            return this->operator*(num);
+        }
+        catch (const char* er) {
+            cout << er << endl;
+        }
     }
 
     HelperString& operator [](int i) {
